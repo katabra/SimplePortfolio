@@ -1,0 +1,6 @@
+ filter=lfs diff=lfs merge=lfs -text
+PFWSUnityClient/Library/Bee/*.dag filter=lfs diff=lfs merge=lfs -text
+PFWSUnityClient/Library/Bee/*.json filter=lfs diff=lfs merge=lfs -text
+PFWSUnityClient/Library/artifactdb filter=lfs diff=lfs merge=lfs -text
+PFWSUnityClient/Library/sourceassetdb filter=lfs diff=lfs merge=lfs -text
+PFWSUnityClient/Assets/TextMesh[[:space:]]Pro/Resources/Fonts[[:space:]]&[[:space:]]Materials/liberationsans[[:space:]]sdf.asset filter=lfs diff=lfs merge=lfs -text
