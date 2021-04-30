@@ -1,0 +1,23 @@
+﻿<Window x:Class="PFWSWPFClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PFWSWPFClient"
+        mc:Ignorable="d"
+        Title="PF_WS_CLIENT" Height="362" Width="432" ResizeMode="NoResize">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="wsAddr" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="ServerAddrTextBox" HorizontalAlignment="Left" Margin="65,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
+        <Button x:Name="ConnectionButton" Content="Connect" Margin="0,9,12,0" VerticalAlignment="Top" Click="ConnectionButton_Click" HorizontalAlignment="Right" Width="49"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,44,0,0" Text="msg" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="MsgTextBox" HorizontalAlignment="Left" Margin="65,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
+        <Button x:Name="SendButton" Content="Send" Margin="0,42,12,0" VerticalAlignment="Top" Click="SendButton_Click" HorizontalAlignment="Right" Width="31"/>
+        <ListBox x:Name="ChatListBox" Margin="10,110,12,16" ItemsSource="{Binding Path=chatList}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="9,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="ko-kr" Text="restApi"/></TextBlock>
+        <TextBox x:Name="RestAddrTextBox" HorizontalAlignment="Left" Margin="65,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
+        <Button x:Name="ApiGetButton" Content="Get" Margin="0,81,46,0" VerticalAlignment="Top" Click="ApiGetButton_Click" HorizontalAlignment="Right" Width="23"/>
+        <Button x:Name="ApiPostButton" Content="Post" Margin="0,81,14,0" VerticalAlignment="Top" Click="ApiPostButton_Click" HorizontalAlignment="Right" Width="27"/>
+
+    </Grid>
+</Window>
