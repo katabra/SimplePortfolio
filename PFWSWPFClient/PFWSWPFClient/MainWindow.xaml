@@ -5,19 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PFWSWPFClient"
         mc:Ignorable="d"
-        Title="PF_WS_CLIENT" Height="362" Width="432" ResizeMode="NoResize">
+        Title="PF_WS_CLIENT" Height="362" Width="684" ResizeMode="NoResize">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="wsAddr" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="ServerAddrTextBox" HorizontalAlignment="Left" Margin="65,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
-        <Button x:Name="ConnectionButton" Content="Connect" Margin="0,9,12,0" VerticalAlignment="Top" Click="ConnectionButton_Click" HorizontalAlignment="Right" Width="49"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,44,0,0" Text="msg" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="MsgTextBox" HorizontalAlignment="Left" Margin="65,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
-        <Button x:Name="SendButton" Content="Send" Margin="0,42,12,0" VerticalAlignment="Top" Click="SendButton_Click" HorizontalAlignment="Right" Width="31"/>
-        <ListBox x:Name="ChatListBox" Margin="10,110,12,16" ItemsSource="{Binding Path=chatList}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="9,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="ko-kr" Text="restApi"/></TextBlock>
-        <TextBox x:Name="RestAddrTextBox" HorizontalAlignment="Left" Margin="65,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
-        <Button x:Name="ApiGetButton" Content="Get" Margin="0,81,46,0" VerticalAlignment="Top" Click="ApiGetButton_Click" HorizontalAlignment="Right" Width="23"/>
-        <Button x:Name="ApiPostButton" Content="Post" Margin="0,81,14,0" VerticalAlignment="Top" Click="ApiPostButton_Click" HorizontalAlignment="Right" Width="27"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400" MinWidth="400"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
+        <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black" Margin="5,5,5,5">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="10,12,0,0" Text="wsAddr" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBox x:Name="ServerAddrTextBox" HorizontalAlignment="Left" Margin="56,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
+                <Button x:Name="ConnectionButton" Content="Connect" Margin="0,10,7,0" VerticalAlignment="Top" Click="ConnectionButton_Click" HorizontalAlignment="Right" Width="48"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,35,0,0" Text="msg" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBox x:Name="MsgTextBox" HorizontalAlignment="Left" Margin="56,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
+                <Button x:Name="SendButton" Content="Send" Margin="0,33,7,0" VerticalAlignment="Top" Click="SendButton_Click" HorizontalAlignment="Right" Width="31"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="ko-kr" Text="restApi"/></TextBlock>
+                <TextBox x:Name="RestAddrTextBox" HorizontalAlignment="Left" Margin="56,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="264"/>
+                <Button x:Name="ApiGetButton" Content="Get" Margin="0,56,39,0" VerticalAlignment="Top" Click="ApiGetButton_Click" HorizontalAlignment="Right" Width="24"/>
+                <Button x:Name="ApiPostButton" Content="Post" Margin="0,56,7,0" VerticalAlignment="Top" Click="ApiPostButton_Click" HorizontalAlignment="Right" Width="27"/>
+                <ListBox x:Name="ChatListBox" Margin="9,94,9,10" ItemsSource="{Binding chatList}"/>
+
+            </Grid>
+        </Border>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"  Width="5" VerticalAlignment="Stretch" />
+        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black"  Margin="5,5,5,5">
+            <ListView ItemsSource="{Binding logList}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Time" Width="100" DisplayMemberBinding="{Binding LogTime}"/>
+                        <GridViewColumn Header="Log" Width="100" DisplayMemberBinding="{Binding LogText}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Border>
     </Grid>
 </Window>

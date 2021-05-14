@@ -34,10 +34,9 @@ namespace PFWSWPFClient
             }
         }
 
-        public ObservableCollection<string> chatList
-        {
-            get; set;
-        } = new ObservableCollection<string>();
+        public ObservableCollection<string> chatList { get; set; } = new ObservableCollection<string>();
+
+        public ObservableCollection<LogEntry> logList { get; set; } = new ObservableCollection<LogEntry>();
 
         public static MainWindow main;
         WSClient wsClient = new WSClient();
@@ -50,14 +49,16 @@ namespace PFWSWPFClient
             DataContext = this;
         }
 
-        private async void ConnectionButton_Click(object sender, RoutedEventArgs e)
+        private void ConnectionButton_Click(object sender, RoutedEventArgs e)
         {
-            await wsClient.Connect(ServerAddrTextBox.Text.Trim());
+            _ = wsClient.Connect(ServerAddrTextBox.Text.Trim());
+            AddNewLog($"Connected To {ServerAddrTextBox.Text.Trim()}");
         }
 
         private async void SendButton_Click(object sender, RoutedEventArgs e)
         {
             await wsClient.SendAsync(MsgTextBox.Text);
+            AddNewLog($"Send '{MsgTextBox.Text}'");
             MsgTextBox.Text = string.Empty;
         }
 
@@ -68,6 +69,7 @@ namespace PFWSWPFClient
                 NotifyPropertyChanged("chatList");
                 ChatListBox.ScrollIntoView(ChatListBox.Items[ChatListBox.Items.Count - 1]);
             });
+            AddNewLog($"Msg '{msg}'");
         }
 
         public void ClearChatList()
@@ -77,6 +79,12 @@ namespace PFWSWPFClient
                 chatList.Clear();
                 NotifyPropertyChanged("chatList");
             });
+        }
+
+        public void AddNewLog(string str)
+        {
+            logList.Add(new LogEntry() { LogTime = DateTime.Now, LogText = str });
+            NotifyPropertyChanged("logList");
         }
 
         private async void ApiGetButton_Click(object sender, RoutedEventArgs e)
